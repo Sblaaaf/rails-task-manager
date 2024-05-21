@@ -1,0 +1,23 @@
+<div class="p-5 container-fluid justify-content-center">
+  <h1 class="text-uppercase text-center fw-bold text-primary">Tasks</h1>
+  <br>
+  <ul class="list-group list-group">
+    <% @tasks.each do |task| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <div class="ms-2 me-auto">
+          <div class="fw-bold"><%= link_to task.title, task_path(task), class:"text-secondary text-decoration-none" %></div>
+          <%# <%= task.details%>
+        </div>
+        <div class="ms-3">
+          <input class="form-check-input me-1" type="checkbox" value="" id="firstCheckbox" <%= 'checked' if task.completed %>>
+          <span class="text-secondary">|</span><%= link_to task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} do %><i class="ms-3 fa-solid fa-trash text-danger"></i><% end %>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+  <button class="btn btn-primary w-100"><%= link_to "+ Add Todo", new_task_path, class:"text-white text-decoration-none" %></button>
+</div>
+
+<%# <i class="fa-solid fa-plus"></i>
+<i class="fa-regular fa-circle-left"></i>
+<i class="fa-solid fa-pen"></i>  %>
